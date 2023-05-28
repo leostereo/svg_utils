@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Box, Stack } from "@mui/material";
+import React from "react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container fixed sx={{  height: '95vh',border: 1, my: 2, py:1 }}>
+      <Stack spacing={2}>
+        <Box sx={{ border: 2 }}>NavBar</Box>
+        <Box sx={{  height: '75vh', display: "flex", justifyContent: "center", border: 2 , alignItems: 'center'}}>
+          <Box
+            sx={{
+              width: "80%",
+              height: 300,
+              backgroundColor: "primary.dark",
+              "&:hover": {
+                backgroundColor: "primary.main",
+                opacity: [0.9, 0.8, 0.7],
+              },
+            }}
+          ></Box>
+        </Box>
+        <Box sx={{ border: 2 }}>BottomBar</Box>
+      </Stack>
+    </Container>
   );
 }
 
