@@ -3,17 +3,25 @@ import React from "react";
 
 function App() {
   return (
-    <Container fixed sx={{  height: '95vh',border: 1, my: 2, py:1 }}>
+    <Container fixed sx={{ backgroundColor: 'action.disabledBackground', height: "95vh", border: 1, my: 2, py: 1 }}>
       <Stack spacing={2}>
-        <Box sx={{ border: 2 }}>NavBar</Box>
-        <Box sx={{  height: '75vh', display: "flex", justifyContent: "center", border: 2 , alignItems: 'center'}}>
+        <Box sx={{ border: 2,  }}>NavBar</Box>
+        <Box
+          sx={{
+            height: "75vh",
+            display: "flex",
+            justifyContent: "center",
+            border: 2,
+            alignItems: "center",
+          }}
+        >
           <Box
             sx={{
               width: "80%",
               height: 300,
-              backgroundColor: "primary.dark",
+              backgroundColor: "action.active",
               "&:hover": {
-                backgroundColor: "primary.main",
+                backgroundColor: "action.hover",
                 opacity: [0.9, 0.8, 0.7],
               },
             }}
