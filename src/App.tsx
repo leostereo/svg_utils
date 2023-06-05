@@ -1,11 +1,15 @@
 import { Container, Box, Stack } from "@mui/material";
 import React from "react";
+import { NavBar } from "./components/NavBar";
+import { SVGMapPage } from "./pages/SVGMapPage";
 
 function App() {
   return (
     <Container fixed sx={{ backgroundColor: 'action.disabledBackground', height: "95vh", border: 1, my: 2, py: 1 }}>
       <Stack spacing={2}>
-        <Box sx={{ border: 2,  }}>NavBar</Box>
+        <Box sx={{ border: 2,  }}>
+          <NavBar/>
+        </Box>
         <Box
           sx={{
             height: "75vh",
@@ -18,14 +22,12 @@ function App() {
           <Box
             sx={{
               width: "80%",
-              height: 300,
-              backgroundColor: "action.active",
-              "&:hover": {
-                backgroundColor: "action.hover",
-                opacity: [0.9, 0.8, 0.7],
-              },
+              height: 400,
+              border: 2
             }}
-          ></Box>
+          >
+            <SVGMapPage/>
+          </Box>
         </Box>
         <Box sx={{ border: 2 }}>BottomBar</Box>
       </Stack>
