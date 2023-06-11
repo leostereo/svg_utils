@@ -12,16 +12,16 @@ import {
 } from "../Interfaces/GroupDataIfaces";
 
 type DinProps = {
-  setShapeInfo: () => void;
+  //setShapeInfo: React.Dispatch<React.SetStateAction<any>>;
+  setShapeInfo: (value:Shape) => void
 };
 
-const DinSVGMap = memo(function SVGMap({ setShapeInfo }: DinProps) {
+const DinSVGMap = memo(function SVGMap({ setShapeInfo }:DinProps) {
   // const handleClick = (event) => {
   //   // alert(event.target.id);
   // };
 
   const handleKeyDown = (event:any):void => {
-    //console.log('press : ',event.key);
 
     const nextMove:string | undefined =
       event.key === "ArrowDown"
@@ -94,15 +94,16 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }: DinProps) {
   };
 
   const focusFirstShape = ():void => {
-    const firstFocus:any =  document.getElementsByClassName("focusable")[0]
+    const focusables =  document.getElementsByClassName("focusable")
+    const firstFocus =  focusables[0]
+        
         if(firstFocus){
-            firstFocus.focus()
+            (firstFocus as HTMLElement).focus()
         }
     
   };
 
   let currentFocusId: string | null = "";
-
   let availableNeighbour: Neighbour = {
     up:   '',
     down: '',
@@ -141,7 +142,7 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }: DinProps) {
   };
 
   const getCurrentNeighbours = () => {
-    const currentFocusedShape = document.activeElement;
+    const currentFocusedShape:Element | null = document.activeElement;
 
     if (currentFocusedShape) {
       currentFocusId = currentFocusedShape.id;
@@ -152,7 +153,6 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }: DinProps) {
     const allFocusableData: Coord[] = [];
 
     const allFocusables = document.getElementsByClassName("focusable");
-    // console.log(allFocusables);
 
     for (let index = 0; index < allFocusables.length; index++) {
       if (allFocusables[index].id !== currentFocuseData.id) {
@@ -251,33 +251,32 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }: DinProps) {
       right: rightNeighbour.id,
       left: leftNeighbour.id,
     };
-    //console.log(availableNeighbour);
   };
 
-  const getCurrentFocusData = () => {
+  const getCurrentFocusData = (currId:string) => {
     for (let index:number = 0; index < GroupsData.length; index++) {
       let ShapeData = GroupsData[index].shapes.find(
-        //(shape:RecShape|CircleShape) => shape.id === currentFocusId
-      
         function getEcual (shape) {
-
-          return shape.id === currentFocusId
-       
+          return shape.id === currId
         }
       
         );
       if (ShapeData) {
         return ShapeData;
-      }else{
-        return undefined
       }
     }
+    return undefined
   };
 
   const handleFocus = () => {
     getCurrentNeighbours();
-    //setShapeInfo(getCurrentFocusData());
-    getCurrentFocusData();
+    let Shape:Shape|undefined
+    if (currentFocusId){
+      Shape = getCurrentFocusData(currentFocusId)
+    } 
+    if (Shape){
+      setShapeInfo(Shape);
+    } 
   };
 
   useEffect(() => {
