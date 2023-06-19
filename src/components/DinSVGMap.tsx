@@ -16,14 +16,16 @@ type DinProps = {
   setShapeInfo: (value:Shape) => void
 };
 
+
+
 const DinSVGMap = memo(function SVGMap({ setShapeInfo }:DinProps) {
   // const handleClick = (event) => {
-  //   // alert(event.target.id);
-  // };
-
-  const handleKeyDown = (event:any):void => {
-
-    const nextMove:string | undefined =
+    //   // alert(event.target.id);
+    // };
+    
+    const handleKeyDown = (event:any):void => {
+      
+      const nextMove:string | undefined =
       event.key === "ArrowDown"
         ? availableNeighbour.down
         : event.key === "ArrowUp"
@@ -40,58 +42,6 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }:DinProps) {
     }    
   };
 
-  const renderSVG = (): void => {
-    const svgns = "http://www.w3.org/2000/svg";
-    const svg: HTMLElement | null = document.getElementById("svg");
-
-    GroupsData.forEach((group) => {
-      let newGroup = document.createElementNS(svgns, "g");
-      newGroup.setAttribute("fill", group.shape_data.color);
-      newGroup.setAttribute("stroke", group.shape_data.stroke);
-      group.shapes.forEach((shape: any) => {
-        let shape_type = group.shape_data.type;
-        let newShape = document.createElementNS(svgns, shape_type);
-
-        const SCALE = 0.5;
-
-        if (shape_type === "rect") {
-          newShape.setAttribute("width", group.shape_data.w.toString());
-          newShape.setAttribute("height", group.shape_data.h.toString());
-          newShape.setAttribute(
-            "x",
-            String(group.x + group.space_x + shape.x * SCALE)
-          );
-          newShape.setAttribute(
-            "y",
-            String(group.y + group.space_y + shape.y * SCALE)
-          );
-          newShape.setAttribute("class", "focusable rect");
-        } else if (shape_type === "circle") {
-          newShape.setAttribute(
-            "cx",
-            String(group.x + group.space_x + shape.cx * SCALE)
-          );
-          newShape.setAttribute(
-            "cy",
-            String(group.y + group.space_y + shape.cy * SCALE)
-          );
-          newShape.setAttribute(
-            "r",
-            String(group.y + group.space_y + shape.r * SCALE)
-          );
-          newShape.setAttribute("class", "focusable circle");
-        }
-        newShape.setAttribute("id", shape.id);
-        newShape.setAttribute("tabindex", String(0));
-        //newShape.onclick = handleClick;
-        newShape.onfocus = handleFocus;
-        newShape.onkeydown = handleKeyDown;
-
-        newGroup.appendChild(newShape);
-      });
-      svg?.appendChild(newGroup);
-    });
-  };
 
   const focusFirstShape = ():void => {
     const focusables =  document.getElementsByClassName("focusable")
@@ -279,9 +229,63 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }:DinProps) {
     } 
   };
 
+  const renderSVG = (): void => {
+    const svgns = "http://www.w3.org/2000/svg";
+    const svg: HTMLElement | null = document.getElementById("svg");
+  
+    GroupsData.forEach((group) => {
+      let newGroup = document.createElementNS(svgns, "g");
+      newGroup.setAttribute("fill", group.shape_data.color);
+      newGroup.setAttribute("stroke", group.shape_data.stroke);
+      group.shapes.forEach((shape: any) => {
+        let shape_type = group.shape_data.type;
+        let newShape = document.createElementNS(svgns, shape_type);
+  
+        const SCALE = 0.5;
+  
+        if (shape_type === "rect") {
+          newShape.setAttribute("width", group.shape_data.w.toString());
+          newShape.setAttribute("height", group.shape_data.h.toString());
+          newShape.setAttribute(
+            "x",
+            String(group.x + group.space_x + shape.x * SCALE)
+          );
+          newShape.setAttribute(
+            "y",
+            String(group.y + group.space_y + shape.y * SCALE)
+          );
+          newShape.setAttribute("class", "focusable rect");
+        } else if (shape_type === "circle") {
+          newShape.setAttribute(
+            "cx",
+            String(group.x + group.space_x + shape.cx * SCALE)
+          );
+          newShape.setAttribute(
+            "cy",
+            String(group.y + group.space_y + shape.cy * SCALE)
+          );
+          newShape.setAttribute(
+            "r",
+            String(group.y + group.space_y + shape.r * SCALE)
+          );
+          newShape.setAttribute("class", "focusable circle");
+        }
+        newShape.setAttribute("id", shape.id);
+        newShape.setAttribute("tabindex", String(0));
+        //newShape.onclick = handleClick;
+        newShape.onfocus = handleFocus;
+        newShape.onkeydown = handleKeyDown;
+  
+        newGroup.appendChild(newShape);
+      });
+      svg?.appendChild(newGroup);
+    });
+  }
+  
   useEffect(() => {
     renderSVG();
     focusFirstShape();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
