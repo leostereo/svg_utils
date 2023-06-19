@@ -1,5 +1,5 @@
 import { GroupsData } from "../definitions/GroupData";
-import { useEffect, useState } from "react";
+import { useEffect  } from "react";
 
 import { Box } from "@mui/material";
 import { memo } from "react";
