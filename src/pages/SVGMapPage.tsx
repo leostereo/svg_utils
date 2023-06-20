@@ -24,7 +24,7 @@ export const SVGMapPage = () => {
   return (
 <Stack spacing={2}>
         <Box bgcolor="info.light" p={2}>
-           PANEL DATA
+           PANEL DATA II
            <Typography>{JSON.stringify(shapeInfo)}</Typography>
         </Box>
 
