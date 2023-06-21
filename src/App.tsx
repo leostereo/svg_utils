@@ -1,7 +1,7 @@
 import { Container, Box, Stack } from "@mui/material";
 import React from "react";
 import { NavBar } from "./components/NavBar";
-import { SVGMapPage } from "./pages/SVGMapPage";
+import Main from "./router/main";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
               border: 2
             }}
           >
-            <SVGMapPage/>
+            <Main/>
           </Box>
         </Box>
         <Box sx={{ border: 2 }}>BottomBar</Box>
