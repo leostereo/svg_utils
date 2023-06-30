@@ -2,8 +2,8 @@ import { Box, Stack, Typography } from "@mui/material"
 import  DinSVGMap  from "../components/DinSVGMap"
 import { useState } from "react";
 import { Shape } from "../Interfaces/GroupDataIfaces";
-export const SVGMapPage = () => {
 
+export const SVGMapPage = () => {
 
   const initialShapeInfo : Shape = {
     id: "",

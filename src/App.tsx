@@ -5,10 +5,19 @@ import Main from "./router/main";
 
 function App() {
   return (
-    <Container fixed sx={{ backgroundColor: 'action.disabledBackground', height: "95vh", border: 1, my: 2, py: 1 }}>
+    <Container
+      fixed
+      sx={{
+        backgroundColor: "action.disabledBackground",
+        height: "95vh",
+        border: 1,
+        my: 2,
+        py: 1,
+      }}
+    >
       <Stack spacing={2}>
-        <Box sx={{ border: 2,  }}>
-          <NavBar/>
+        <Box sx={{ border: 2 }}>
+          <NavBar />
         </Box>
         <Box
           sx={{
@@ -23,10 +32,10 @@ function App() {
             sx={{
               width: "80%",
               height: 400,
-              border: 2
+              border: 2,
             }}
           >
-            <Main/>
+            <Main />
           </Box>
         </Box>
         <Box sx={{ border: 2 }}>BottomBar</Box>

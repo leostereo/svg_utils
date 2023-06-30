@@ -290,11 +290,11 @@ const DinSVGMap = memo(function SVGMap({ setShapeInfo }:DinProps) {
 
   return (
     <Box bgcolor="secondary.main" sx={{ overflow: "auto" }}>
-      <svg id="svg" xmlns="http://www.w3.org/2000/svg">
+      <svg height={300} id="svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <style>
             {`.cls-1,.cls-7{fill:#b2488d;}
-              .rect1{stroke:#671f4d}`}
+              .rect:focus{stroke:#671f4d}`}
           </style>
         </defs>
       </svg>
